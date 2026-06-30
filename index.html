@@ -6,270 +6,400 @@
     <title>Berry SMP | Season 2</title>
     <style>
         :root {
-            --bg-color: #0f0c1b;
-            --card-bg: #1c1530;
-            --accent-berry: #d81e5b;
-            --accent-glow: #f0548a;
-            --text-main: #f8f7f9;
-            --text-muted: #a39fbc;
+            --bg: #0b0914;
+            --surface: #131124;
+            --surface-hover: #1b1832;
+            --accent: #d81e5b;
+            --accent-glow: rgba(216, 30, 91, 0.35);
+            --text: #f3f2f7;
+            --muted: #8d89a5;
+            --border: rgba(255, 255, 255, 0.05);
+            --success: #00f2fe;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        /* Header & Navigation */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
-            background: rgba(15, 12, 27, 0.8);
-            backdrop-filter: blur(10px);
+            padding: 24px 6%;
             position: fixed;
             width: 100%;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
+            background: rgba(11, 9, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .brand {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-        .logo span {
-            color: var(--accent-berry);
-        }
+        .brand span { color: var(--accent); }
 
         nav a {
-            color: var(--text-muted);
+            color: var(--muted);
             text-decoration: none;
-            margin-left: 25px;
-            font-weight: 600;
-            transition: color 0.3s;
+            margin-left: 32px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
-        nav a:hover, nav a.active {
-            color: var(--accent-glow);
-        }
+        nav a:hover, nav a.active { color: var(--text); }
 
-        /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
-            background: radial-gradient(circle at center, #2d1236 0%, var(--bg-color) 70%);
+            padding: 120px 24px 60px;
+            background: radial-gradient(circle at 50% 40%, rgba(216, 30, 91, 0.12) 0%, transparent 60%);
         }
 
-        .season-badge {
-            background: var(--accent-berry);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(216, 30, 91, 0.4);
+        .meta-tag {
+            background: rgba(216, 30, 91, 0.1);
+            border: 1px solid rgba(216, 30, 91, 0.25);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: inline-block;
         }
 
         .hero h1 {
-            font-size: 64px;
-            font-weight: 900;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
+            font-size: 56px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            max-width: 800px;
         }
 
         .hero p {
-            font-size: 20px;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 40px;
+            color: var(--muted);
+            font-size: 18px;
+            max-width: 580px;
+            margin-bottom: 36px;
         }
 
-        /* IP Copy Button */
-        .ip-container {
-            background: var(--card-bg);
-            padding: 10px 10px 10px 25px;
-            border-radius: 50px;
+        .console-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 6px 6px 6px 20px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            border: 1px solid rgba(216, 30, 91, 0.2);
+            width: 100%;
+            max-width: 540px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             cursor: pointer;
-            transition: transform 0.2s, border-color 0.3s;
+            transition: border-color 0.2s;
         }
 
-        .ip-container:hover {
-            transform: scale(1.02);
-            border-color: var(--accent-berry);
+        .console-box:focus-within {
+            border-color: var(--accent);
         }
 
-        .ip-text {
-            font-family: 'Courier New', Courier, monospace;
+        .console-label {
+            font-size: 11px;
             font-weight: 700;
-            font-size: 18px;
-            margin-right: 20px;
+            color: var(--accent);
+            text-transform: uppercase;
             letter-spacing: 1px;
+            margin-right: 12px;
+            user-select: none;
         }
 
-        .ip-btn {
-            background: var(--accent-berry);
-            color: white;
+        .console-input {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            font-size: 14px;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .action-btn {
+            background: var(--text);
+            color: var(--bg);
             border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: opacity 0.2s;
         }
 
-        .ip-container:hover .ip-btn {
-            background: var(--accent-glow);
-        }
+        .action-btn:hover { opacity: 0.9; }
 
-        /* Features Section */
-        .features {
-            padding: 100px 8%;
-            max-width: 1200px;
+        .features-panel {
+            padding: 100px 6%;
+            max-width: 1300px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+            border-top: 1px solid var(--border);
         }
 
-        .section-title {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 60px;
+        .panel-sidebar h2 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .tab-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: sticky;
+            top: 120px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--muted);
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .tab-btn.active {
+            color: var(--text);
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .features-display-wrapper {
             position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background: var(--accent-berry);
-            margin: 10px auto 0;
-            border-radius: 2px;
+        .features-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
         }
 
-        .grid {
+        .features-grid.active {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
         }
 
-        .card {
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: transform 0.3s, box-shadow 0.3s;
+        .feature-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: 12px;
+            transition: transform 0.2s, background 0.2s;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-color: rgba(216, 30, 91, 0.1);
+        .feature-item:hover {
+            background: var(--surface-hover);
+            transform: translateY(-2px);
         }
 
-        .card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--text-main);
+        .feature-item h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
-        .card p {
-            color: var(--text-muted);
-            font-size: 15px;
+        .feature-item p {
+            font-size: 13px;
+            color: var(--muted);
+            line-height: 1.5;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header { padding: 20px 5%; }
-            nav { display: none; } /* Simplified for template */
-            .hero h1 { font-size: 42px; }
-            .hero p { font-size: 16px; }
-            .ip-text { font-size: 15px; margin-right: 10px; }
-            .ip-btn { padding: 10px 18px; font-size: 14px; }
+        @media (max-width: 900px) {
+            .features-panel { grid-template-columns: 1fr; gap: 40px; }
+            .tab-menu { flex-direction: row; overflow-x: auto; white-space: nowrap; position: static; padding-bottom: 12px; }
+            .hero h1 { font-size: 40px; }
+            header nav { display: none; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Berry<span>SMP</span></div>
+        <div class="brand">Berry<span>SMP</span></div>
         <nav>
-            <a href="#" class="active">Home</a>
-            <a href="#features">Features</a>
-            <a href="#rules">Rules</a>
-            <a href="#discord">Discord</a>
+            <a href="#" class="active">Overview</a>
+            <a href="#features">Engine Core</a>
+            <a href="https : // discord . gg" target="_blank">Community</a>
         </nav>
     </header>
 
     <section class="hero">
-        <div class="season-badge">Season 2 is Live</div>
-        <h1>Welcome to Berry SMP</h1>
-        <p>A vanilla-plus survival experience built for a tight-knit community. Explore, build empires, and survive together on Season 2.</p>
+        <div class="meta-tag">
+            <span class="status-dot" id="statusDot"></span>
+            <span id="statusText">Verifying Handshake...</span>
+        </div>
+        <h1>A Native WebSocket Survival Matrix.</h1>
+        <p>Experience zero-latency Vanilla multiplayer directly from any standard client wrapper. Optimized for modern revision compatibility across historical releases.</p>
         
-        <!-- Change the data-ip attribute to your actual server IP -->
-        <div class="ip-container" id="ipCard" data-ip="://berrysmp.com" onclick="copyIp()">
-            <span class="ip-text">://berrysmp.com</span>
-            <button class="ip-btn" id="copyBtn">Copy IP</button>
+        <div class="console-box" onclick="copyWebSocketAddress()">
+            <span class="console-label">WSS</span>
+            <div class="console-input" id="wsURI">wss : // berrysmpS2 . eagler</div>
+            <button class="action-btn" id="copyAction">Copy Route</button>
         </div>
     </section>
 
-    <section class="features" id="features">
-        <h2 class="section-title">Why Join Us?</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Fresh Season 2 Map</h3>
-                <p>An entirely untouched world map featuring brand new generation. Plenty of space to claim territory and start massive build projects.</p>
+    <section class="features-panel" id="features">
+        <div class="panel-sidebar">
+            <h2>Server Specifications</h2>
+            <div class="tab-menu">
+                <button class="tab-btn active" onclick="switchCategory('core')">Core Mechanics</button>
+                <button class="tab-btn" onclick="switchCategory('economy')">Economy & Trade</button>
+                <button class="tab-btn" onclick="switchCategory('world')">World Systems</button>
+                <button class="tab-btn" onclick="switchCategory('performance')">Optimization</button>
             </div>
-            <div class="card">
-                <h3>Thriving Economy</h3>
-                <p>Player-driven diamond economy featuring a central shopping district. Establish your own shop or trade with players freely.</p>
+        </div>
+
+        <div class="features-display-wrapper">
+            <!-- CATEGORY 1: CORE MECHANICS -->
+            <div class="features-grid active" id="cat-core">
+                <div class="feature-item"><h3>01. Unified Version Gateway</h3><p>Native client handshakes bridging legacy structures flawlessly.</p></div>
+                <div class="feature-item"><h3>02. WebGL Hardware Pipeline</h3><p>Leverages direct client-side GPU acceleration structures.</p></div>
+                <div class="feature-item"><h3>03. Fixed Tick Synchronization</h3><p>Maintains exact server loop parity under dense processing loads.</p></div>
+                <div class="feature-item"><h3>04. Lossless Packet Compression</h3><p>Custom network compression layers dropping structural ping overhead.</p></div>
+                <div class="feature-item"><h3>05. Strict Vanilla Simulation</h3><p>Redstone logic and block updates mimic original mechanical states.</p></div>
+                <div class="feature-item"><h3>06. Adaptive View Distancing</h3><p>Dynamic chunk rendering scales dynamically based on individual client frame-time.</p></div>
+                <div class="feature-item"><h3>07. Cryptographic Account Sync</h3><p>Secures user keys locally without vulnerable explicit text entry fields.</p></div>
+                <div class="feature-item"><h3>08. Zero-Install Execution</h3><p>Boot directly inside any modern web workspace container.</p></div>
+                <div class="feature-item"><h3>09. Multi-Protocol Support</h3><p>Accepts raw socket tunnels as well as browser secure proxy pathways.</p></div>
+                <div class="feature-item"><h3>10. Crossplay Framework</h3><p>Allows transparent networking logic maps to talk between environments.</p></div>
+                <div class="feature-item"><h3>11. Hardened Exploit Shield</h3><p>Intercepts erratic client telemetry data sequences natively.</p></div>
+                <div class="feature-item"><h3>12. Frame-State Preservation</h3><p>Saves immediate contextual positions on dirty disconnection alerts.</p></div>
+                <div class="feature-item"><h3>13. Session Handshake Security</h3><p>Rotational tokens guarantee bad actors cannot hijack passive profiles.</p></div>
             </div>
-            <div class="card">
-                <h3>Enhanced Vanilla</h3>
-                <p>Carefully selected quality-of-life plugins that preserve the vanilla Minecraft feel while keeping multiplayer engaging and secure.</p>
+
+            <!-- CATEGORY 2: ECONOMY & TRADE -->
+            <div class="features-grid" id="cat-economy">
+                <div class="feature-item"><h3>14. Decoupled Market Ledger</h3><p>Item rates update independently relative to historical storage logs.</p></div>
+                <div class="feature-item"><h3>15. Decentralized Barter Hubs</h3><p>Physical token checkouts protect vendor inventories seamlessly.</p></div>
+                <div class="feature-item"><h3>16. Non-Inflated Resource Matrix</h3><p>Preserves hard-currency value metrics across long-duration milestones.</p></div>
+                <div class="feature-item"><h3>17. Immutable Block Logs</h3><p>Tracks commercial structural interaction points in sequence.</p></div>
+                <div class="feature-item"><h3>18. Secure Trade Terminals</h3><p>Double-handshake interfaces eliminating proximity item dropping hazards.</p></div>
+                <div class="feature-item"><h3>19. Dynamic Regional Tax Matrix</h3><p>Configurable structural upkeep fees balanced automatically by zone.</p></div>
+                <div class="feature-item"><h3>20. Commodity Liquidation Pools</h3><p>Instantly convert common-grade blocks directly into operational scrap values.</p></div>
+                <div class="feature-item"><h3>21. Zero-Fee Vault Networks</h3><p>End-to-end global banking interfaces inside key faction capitals.</p></div>
+                <div class="feature-item"><h3>22. Autonomous Auction Arrays</h3><p>List items to global queues using background cron synchronization.</p></div>
+                <div class="feature-item"><h3>23. Asynchronous Contract Boards</h3><p>Post bounties or gathering requests without remaining online.</p></div>
+                <div class="feature-item"><h3>24. Scaled Enterprise Buffs</h3><p>Factions gain minor resource returns based on infrastructure density.</p></div>
+                <div class="feature-item"><h3>25. Audited Transaction Queues</h3><p>Complete historical payment safety tracking managed via engine records.</p></div>
+            </div>
+
+            <!-- CATEGORY 3: WORLD SYSTEMS -->
+            <div class="features-grid" id="cat-world">
+                <div class="feature-item"><h3>26. Custom Seed Assembly</h3><p>Extremely varied terrain layouts emphasizing tall geometric massifs.</p></div>
+                <div class="feature-item"><h3>27. Chrono-Weather Variance</h3><p>Atmospheric events trigger dynamic block modifications locally.</p></div>
+                <div class="feature-item"><h3>28. Localized Event Horizons</h3><p>Randomly spawning exploration targets featuring high-tier spoils.</p></div>
+                <div class="feature-item"><h3>29. Fractional Core Generation</h3><p>Underground cave maps follow intricate, deep topological paths.</p></div>
+                <div class="feature-item"><h3>30. Modular Base Protections</h3><p>Define build ownership borders using sub-chunk precision lines.</p></div>
+                <div class="feature-item"><h3>31. Dynamic Mob Progression</h3><p>Threat coefficients adjust based on structural radius distances.</p></div>
+                <div class="feature-item"><h3>32. Environmental Rot Decay</h3><p>Unclaimed block assemblies slowly clear up over extended cycles.</p></div>
+                <div class="feature-item"><h3>33. Real-time Cartography Feeds</h3><p>High-fidelity satellite tracking displays player hubs accurately.</p></div>
+                <div class="feature-item"><h3>34. Biome Aggregation Layers</h3><p>Smoother flora transitions avoiding harsh hard-edge generation cutoffs.</p></div>
+                <div class="feature-item"><h3>35. Artifact Restoration Relics</h3><p>Rare items capable of instantly restoring depleted structural fields.</p></div>
+                <div class="feature-item"><h3>36. Custom Flight Tunnels</h3><p>Travel routes through deep infrastructure lines safely.</p></div>
+                <div class="feature-item"><h3>37. Multi-Tiered Nether Outposts</h3><p>Unique structural generation elements scattered through the core.</p></div>
+                <div class="feature-item"><h3>38. Scaled World Boundary Rails</h3><p>Smooth expansion loops prevent hard collision boundary stuttering.</p></div>
+            </div>
+
+            <!-- CATEGORY 4: OPTIMIZATION -->
+            <div class="features-grid" id="cat-performance">
+                <div class="feature-item"><h3>39. Threaded Entity Distribution</h3><p>Allocates dense mob processes across isolated worker channels.</p></div>
+                <div class="feature-item"><h3>40. Aggressive Garbage Trimming</h3><p>Cleans system cache loops continuously without micro-stutter spikes.</p></div>
+                <div class="feature-item"><h3>41. Asynchronous Chunk Streaming</h3><p>Prefetches surrounding grid nodes smoothly during rapid travel.</p></div>
+                <div class="feature-item"><h3>42. Predictive Network Tracking</h3><p>Anticipates vector movements to resolve client lag position anomalies.</p></div>
+                <div class="feature-item"><h3>43. Compressed Asset Bundling</h3><p>Loads raw map environments using minimal memory pipelines.</p></div>
+                <div class="feature-item"><h3>44. Intelligent Entity Culling</h3><p>Lowers calculation loops for animations outside viewer vision lines.</p></div>
+                <div class="feature-item"><h3>45. Direct Array Memory Storage</h3><p>Stores coordinate metrics in raw linear arrays for access speed.</p></div>
+                <div class="feature-item"><h3>46. High-Frequency I/O Layers</h3><p>Sub-millisecond writes avoid sector locks during auto-saving events.</p></div>
+                <div class="feature-item"><h3>47. Overload Safety Damping</h3><p>Gracefully reduces visual entity details before a connection breaks.</p></div>
+                <div class="feature-item"><h3>48. Hardware Profile Autoscaling</h3><p>Dynamically matches system parameters against active instance loads.</p></div>
+                <div class="feature-item"><h3>49. Non-Blocking Query Pipelines</h3><p>Database queries run separate from the main physics simulation loop.</p></div>
+                <div class="feature-item"><h3>50. Zero-Downtime Hot Swaps</h3><p>Update plugins and patches without closing active network tunnels.</p></div>
             </div>
         </div>
     </section>
 
     <script>
-        function copyIp() {
-            const ipCard = document.getElementById('ipCard');
-            const copyBtn = document.getElementById('copyBtn');
-            const ipText = ipCard.getAttribute('data-ip');
+        function copyWebSocketAddress() {
+            const rawURI = "wss://berrysmpS2.eagler";
+            const copyBtn = document.getElementById('copyAction');
             
-            navigator.clipboard.writeText(ipText).then(() => {
+            navigator.clipboard.writeText(rawURI).then(() => {
                 copyBtn.innerText = 'Copied!';
-                copyBtn.style.background = '#2ec4b6';
+                copyBtn.style.background = '#00f2fe';
                 
                 setTimeout(() => {
-                    copyBtn.innerText = 'Copy IP';
-                    copyBtn.style.background = '#d81e5b';
+                    copyBtn.innerText = 'Copy Route';
+                    copyBtn.style.background = '#f3f2f7';
                 }, 2000);
-            }).catch(err => {
-                console.error('Could not copy text: ', err);
             });
         }
+
+        function switchCategory(catId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.features-grid').forEach(grid => grid.classList.remove('active'));
+            
+            event.currentTarget.classList.add('active');
+            document.getElementById('cat-' + catId).classList.add('active');
+        }
+
+        setTimeout(() => {
+            document.getElementById('statusDot').style.backgroundColor = '#00f2fe';
+            document.getElementById('statusText').innerText = 'Season 2 Online (1.5.2 - 1.26.2 Core)';
+        }, 1200);
     </script>
 </body>
 </html>
