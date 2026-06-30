@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berry SMP</title>
+    <title>BerrySMP</title>
     <style>
         * {
             box-sizing: border-box;
@@ -131,10 +131,10 @@
 
     <div class="container">
         <h1>Berry<span>SMP</span></h1>
-        <div class="subtitle" id="serverStatus">loading the status n shiii - aroze</div>
+        <div class="subtitle" id="serverStatus">Loading connection status...</div>
         
         <div class="join-box" onclick="copyAddress()">
-            <span id="ipText">wss://berrysmpS2.eagler.host</span>
+            <span id="ipText">wss:  //  berrysmpS2.eagler.host</span>
             <button class="btn" id="copyBtn">Copy Link</button>
         </div>
 
@@ -153,15 +153,14 @@
 
         <footer>
             Server Owned by Oreo1234<br>
-            Site made by Jumps & Aroze
+            Site made by Jumps and Aroze
         </footer>
     </div>
 
     <script>
-        // CONFIG PANEL — aroze, you have to manually change it, its not automatic dude T-T - jumps
-        const currentPlayersOnline = 5; 
-        const maxServerCapacity = 20; 
-        const currentServerState = "online"; // Set to "online", "offline", or "whitelist" 
+        // STATUS CONFIG — UPDATE THIS LINE MANUALLY AROZE GOODNESS
+        // Choose between: "online" , "offline" , or "whitelist"
+        const currentServerState = "online"; 
 
         function displayStatus() {
             const statusDiv = document.getElementById('serverStatus');
@@ -171,7 +170,7 @@
             } else if (currentServerState === "whitelist") {
                 statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ffcc00">● Whitelist Active</span>`;
             } else {
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${currentPlayersOnline}/${maxServerCapacity} online now!</span> :D`;
+                statusDiv.innerHTML = `Season 2 Lifesteal — <span>● Server Online!</span> :D`;
                 statusDiv.querySelector('span').style.color = '#2ec4b6';
             }
         }
