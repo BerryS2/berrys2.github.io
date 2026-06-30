@@ -3,265 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berry SMP | Season 2</title>
+    <title>Berry SMP | Lifesteal S2</title>
     <style>
         :root {
-            --bg: #0b0914;
-            --surface: #131124;
-            --surface-hover: #1b1832;
-            --accent: #d81e5b;
-            --accent-glow: rgba(216, 30, 91, 0.35);
-            --text: #f3f2f7;
-            --muted: #8d89a5;
-            --border: rgba(255, 255, 255, 0.05);
-            --success: #00f2fe;
+            --bg: #09070f;
+            --card: #120e1a;
+            --red: #ff2a5f;
+            --red-glow: rgba(255, 42, 95, 0.3);
+            --text: #ffffff;
+            --subtext: #8b8599;
+            --border: rgba(255, 255, 255, 0.04);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
         }
 
         body {
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.5;
             overflow-x: hidden;
         }
 
+        /* Top Bar Nav */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 6%;
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--border);
+            background: rgba(9, 7, 15, 0.8);
+            backdrop-filter: blur(8px);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
-            background: rgba(11, 9, 20, 0.7);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
         }
 
-        .brand {
+        .logo {
             font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .brand span { color: var(--accent); }
+        .logo span {
+            color: var(--red);
+        }
 
-        nav a {
-            color: var(--muted);
+        .nav-links a {
+            color: var(--subtext);
             text-decoration: none;
-            margin-left: 32px;
             font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
+            font-weight: 600;
+            margin-left: 24px;
+            transition: color 0.15s;
         }
 
-        nav a:hover, nav a.active { color: var(--text); }
+        .nav-links a:hover {
+            color: var(--text);
+        }
 
+        /* Hero Main View */
         .hero {
-            min-height: 85vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 120px 24px 60px;
-            background: radial-gradient(circle at 50% 40%, rgba(216, 30, 91, 0.12) 0%, transparent 60%);
-        }
-
-        .meta-tag {
-            background: rgba(216, 30, 91, 0.1);
-            border: 1px solid rgba(216, 30, 91, 0.25);
-            color: var(--accent);
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 24px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .status-dot {
-            width: 7px;
-            height: 7px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            display: inline-block;
+            padding: 140px 20px 40px;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 42, 95, 0.08) 0%, transparent 60%);
         }
 
         .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            max-width: 800px;
+            font-size: 64px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+            text-shadow: 0 0 20px var(--red-glow);
         }
 
         .hero p {
-            color: var(--muted);
-            font-size: 18px;
-            max-width: 580px;
-            margin-bottom: 36px;
+            color: var(--subtext);
+            font-size: 16px;
+            max-width: 500px;
+            margin-bottom: 32px;
+            font-weight: 500;
         }
 
-        .console-box {
-            background: var(--surface);
+        /* Simple IP Join Widget */
+        .ip-bar {
+            background: var(--card);
             border: 1px solid var(--border);
-            padding: 6px 6px 6px 20px;
-            border-radius: 12px;
+            padding: 8px 8px 8px 20px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             width: 100%;
-            max-width: 540px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            max-width: 440px;
             cursor: pointer;
-            transition: border-color 0.2s;
+            transition: border-color 0.15s;
         }
 
-        .console-box:focus-within {
-            border-color: var(--accent);
+        .ip-bar:hover {
+            border-color: rgba(255, 42, 95, 0.3);
         }
 
-        .console-label {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-right: 12px;
-            user-select: none;
-        }
-
-        .console-input {
-            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-            font-size: 14px;
+        .ip-bar span {
+            font-family: monospace;
+            font-size: 15px;
             color: var(--text);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
             flex-grow: 1;
             text-align: left;
         }
 
-        .action-btn {
-            background: var(--text);
-            color: var(--bg);
+        .ip-btn {
+            background: var(--red);
+            color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 6px;
             font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .action-btn:hover { opacity: 0.9; }
-
-        .features-panel {
-            padding: 100px 6%;
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 60px;
-            border-top: 1px solid var(--border);
-        }
-
-        .panel-sidebar h2 {
-            font-size: 32px;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .tab-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            position: sticky;
-            top: 120px;
-        }
-
-        .tab-btn {
-            background: transparent;
-            border: none;
-            color: var(--muted);
-            text-align: left;
-            padding: 12px 16px;
-            font-size: 14px;
-            font-weight: 500;
             cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s;
+            text-transform: uppercase;
         }
 
-        .tab-btn:hover {
-            color: var(--text);
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .tab-btn.active {
-            color: var(--text);
-            background: var(--surface);
-            border-left: 3px solid var(--accent);
-            border-radius: 0 8px 8px 0;
-        }
-
-        .features-display-wrapper {
-            position: relative;
-        }
-
-        .features-grid {
-            display: none;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .features-grid.active {
+        /* Fast Stats Grid */
+        .quick-stats {
             display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            width: 100%;
+            max-width: 440px;
+            margin-top: 16px;
         }
 
-        .feature-item {
-            background: var(--surface);
+        .stat-node {
+            background: var(--card);
             border: 1px solid var(--border);
-            padding: 24px;
-            border-radius: 12px;
-            transition: transform 0.2s, background 0.2s;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
         }
 
-        .feature-item:hover {
-            background: var(--surface-hover);
-            transform: translateY(-2px);
+        .stat-node div:first-child {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--subtext);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .feature-item h3 {
+        .stat-node div:last-child {
             font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-weight: 800;
+            color: var(--text);
+            margin-top: 2px;
         }
 
-        .feature-item p {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.5;
+        .stat-node div span {
+            color: var(--red);
         }
 
-        @media (max-width: 900px) {
-            .features-panel { grid-template-columns: 1fr; gap: 40px; }
-            .tab-menu { flex-direction: row; overflow-x: auto; white-space: nowrap; position: static; padding-bottom: 12px; }
-            .hero h1 { font-size: 40px; }
+        /* Info Section */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .info-box h2 {
+            font-size: 24px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .info-box p {
+            color: var(--subtext);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 44px; }
+            .info-row { grid-template-columns: 1fr; gap: 24px; }
             header nav { display: none; }
         }
     </style>
@@ -269,131 +214,77 @@
 <body>
 
     <header>
-        <div class="brand">Berry<span>SMP</span></div>
-        <nav>
-            <a href="#" class="active">Overview</a>
-            <a href="#features">Features</a>
+        <div class="logo">Berry<span>SMP</span></div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="https : // discord . gg" target="_blank">Discord</a>
+            <a href="#" onclick="alert('Store opening soon!')">Store</a>
         </nav>
     </header>
 
     <section class="hero">
-        <div class="meta-tag">
-            <span class="status-dot" id="statusDot"></span>
-            <span id="statusText">Verifying Handshake...</span>
-        </div>
-        <h1>A Native WebSocket Survival Matrix.</h1>
-        <p>Experience zero-latency Vanilla multiplayer directly from any standard client wrapper. Optimized for modern revision compatibility across historical releases.</p>
+        <h1>Lifesteal <span>S2</span></h1>
+        <p>Kill players, steal their hearts. Lose all your hearts and get eliminated. Classic, high-stakes vanilla PvP.</p>
         
-        <div class="console-box" onclick="copyWebSocketAddress()">
-            <span class="console-label">WSS</span>
-            <div class="console-input" id="wsURI">wss://berrysmpS2.eagler</div>
-            <button class="action-btn" id="copyAction">Copy Route</button>
+        <div class="ip-bar" onclick="copyIpAddress()">
+            <span id="ipText">wss://berrysmpS2.eagler</span>
+            <button class="ip-btn" id="copyBtn">Copy</button>
+        </div>
+
+        <div class="quick-stats">
+            <div class="stat-node">
+                <div>Status</div>
+                <div id="statusIndicator">Online</div>
+            </div>
+            <div class="stat-node">
+                <div>Client</div>
+                <div>1.5.2 - 1.26</div>
+            </div>
+            <div class="stat-node">
+                <div>Mode</div>
+                <div>Cracked</div>
+            </div>
         </div>
     </section>
-
-    <section class="features-panel" id="features">
-        <div class="panel-sidebar">
-            <h2>Server Specifications</h2>
-            <div class="tab-menu">
-                <button class="tab-btn active" onclick="switchCategory('core')">Core Mechanics</button>
-                <button class="tab-btn" onclick="switchCategory('economy')">Economy & Trade</button>
-                <button class="tab-btn" onclick="switchCategory('world')">World Systems</button>
-                <button class="tab-btn" onclick="switchCategory('performance')">Optimization</button>
+    <section class="main-content">
+        <div class="info-row">
+            <div class="info-box">
+                <h2>The Gameplay</h2>
+                <p>Every time you kill a player in PvP, you permanently steal one of their hearts and add it to your health bar. If an opponent kills you, you drop a heart block. Manage your health and gear up carefully.</p>
+            </div>
+            <div class="info-box">
+                <h2>Eliminations</h2>
+                <p>If your health reaches zero hearts total, you are completely banned / eliminated from the map. Faction members or teammates must craft a revival beacon to bring your profile back into the active season layout.</p>
             </div>
         </div>
 
-        <div class="features-display-wrapper">
-            <div class="features-grid active" id="cat-core">
-                <div class="feature-item"><h3>Browser Playable</h3><p>No downloads required. Paste the link into your browser and play instantly.</p></div>
-                <div class="feature-item"><h3>Version Compatibility</h3><p>Play on anything from old-school 1.5.2 up to the latest 1.26 client builds.</p></div>
-                <div class="feature-item"><h3>Optimized WebSocket</h3><p>Configured connection parameters to make sure clicks and blocks register with zero delay.</p></div>
-                <div class="feature-item"><h3>Bedrock and Java Crossplay</h3><p>Play with friends no matter if they are on a PC, mobile phone, or a browser wrapper.</p></div>
-                <div class="feature-item"><h3>Vanilla Redstone Physics</h3><p>Server physics maintain standard vanilla mechanics so all your farm designs actually work.</p></div>
-                <div class="feature-item"><h3>Server Side Anti Cheat</h3><p>Custom server patches block fly hacks, clickbots, and movement speed exploits.</p></div>
-                <div class="feature-item"><h3>Simple Chat Authentication</h3><p>Register your account name easily directly inside the server chat log.</p></div>
-                <div class="feature-item"><h3>Dynamic Entity Culling</h3><p>Keeps your frame rate high even inside laggy base areas.</p></div>
-                <div class="feature-item"><h3>Crash Protection</h3><p>If your browser tab crashes, the server saves your inventory state safely.</p></div>
-                <div class="feature-item"><h3>Staff Logging Tools</h3><p>Tools track every block placement to fix things fast if someone breaks the rules.</p></div>
-                <div class="feature-item"><h3>Direct Proxy Routing</h3><p>Our secure wss pathway bypasses school and work network blocks cleanly.</p></div>
-                <div class="feature-item"><h3>Offline Mode Support</h3><p>No premium Minecraft account needed to play or save your custom builds.</p></div>
-                <div class="feature-item"><h3>Fast Client Startup</h3><p>The entire client script loads under 3 seconds on slow mobile internet connections.</p></div>
+        <div class="info-row">
+            <div class="info-box">
+                <h2>Server Info</h2>
+                <p>Running directly via custom server pathways for optimized browser access. Cracked logins are enabled, meaning a premium Microsoft Minecraft license is not required to jump in and set up a base.</p>
             </div>
-
-            <div class="features-grid" id="cat-economy">
-                <div class="feature-item"><h3>Player Shopping District</h3><p>Set up custom villager shops or chests at spawn to sell your gear.</p></div>
-                <div class="feature-item"><h3>Diamond Economy</h3><p>No fake virtual cash. The entire server economy is backed by raw physical items.</p></div>
-                <div class="feature-item"><h3>Safe Trade Interface</h3><p>Drop-proof trade window prevents scammers from stealing items during player deals.</p></div>
-                <div class="feature-item"><h3>Spawn Trade Hub</h3><p>A protected safe zone for safe meeting points, community events, and shop plots.</p></div>
-                <div class="feature-item"><h3>Community Job Boards</h3><p>Post community bounties or hire other players to dig out massive perimeter holes.</p></div>
-                <div class="feature-item"><h3>Market Trackers</h3><p>Quick chat commands to see global item values and market trends instantly.</p></div>
-                <div class="feature-item"><h3>Resource Exchange</h3><p>Trade extra cobblestone and dirt at spawn vendors for helpful basic tools.</p></div>
-                <div class="feature-item"><h3>Team Chest Vaults</h3><p>Secure double-locked chests to share building supplies with your faction mates.</p></div>
-                <div class="feature-item"><h3>Auction House Queue</h3><p>List rare enchantment books or mob drops to a global server marketplace queue.</p></div>
-                <div class="feature-item"><h3>Shop Warp Points</h3><p>Quick travel gates that let buyers teleport directly to your base store front.</p></div>
-                <div class="feature-item"><h3>Land Upkeep Systems</h3><p>Pay small material fees to keep your base plots immune to world wipes.</p></div>
-                <div class="feature-item"><h3>Anti Monopoly Limits</h3><p>Farming limits prevent a single player from crashing the diamond value scale.</p></div>
-            </div>
-
-            <div class="features-grid" id="cat-world">
-                <div class="feature-item"><h3>Custom Season 2 Seed</h3><p>Hand-picked terrain map featuring massive mountains and clean ocean views.</p></div>
-                <div class="feature-item"><h3>Land Claim Blocks</h3><p>Protect your builds from griefers using simple golden shovel area selections.</p></div>
-                <div class="feature-item"><h3>Huge World Border</h3><p>Massive boundary limit gives everyone plenty of space to build separate empires.</p></div>
-                <div class="feature-item"><h3>Deep Slate Caves</h3><p>Extended world depth enabled for massive cave exploration trips.</p></div>
-                <div class="feature-item"><h3>Proximity Voice Chat</h3><p>Talk to players in real-time as you walk past their bases in-game.</p></div>
-                <div class="feature-item"><h3>Live Dynmap Tracker</h3><p>Open a web map browser tab to see your base location from above in real-time.</p></div>
-                <div class="feature-item"><h3>Nether Highway Systems</h3><p>Protected roof lanes for lightning fast travel across thousands of blocks.</p></div>
-                <div class="feature-item"><h3>Hard Mode Difficulty</h3><p>Zombies break down doors and mobs deal real damage to keep survival fun.</p></div>
-                <div class="feature-item"><h3>Automatic Grief Rollbacks</h3><p>CoreProtect tools let admins undo fire, lava, or explosions instantly.</p></div>
-                <div class="feature-item"><h3>Custom Head Drops</h3><p>Killing a player has a rare chance to drop their custom skin head block.</p></div>
-                <div class="feature-item"><h3>Expanded End Dimension</h3><p>The outer islands reset every month so custom loot ships never run dry.</p></div>
-                <div class="feature-item"><h3>Wilderness Teleport</h3><p>Use a single command to drop randomly into the wild and start building fast.</p></div>
-            </div>
-
-            <div class="features-grid" id="cat-performance">
-                <div class="feature-item"><h3>Dedicated Server Hardware</h3><p>Hosted on raw high-spec compute nodes, not a cheap shared web platform.</p></div>
-                <div class="feature-item"><h3>Async Chunk Loading</h3><p>Chunks load completely separate from player movement to stop block lag.</p></div>
-                <div class="feature-item"><h3>Memory Cache Cleaning</h3><p>Automatic backend garbage removal prevents random connection timing spikes.</p></div>
-                <div class="feature-item"><h3>Entity Stacking Systems</h3><p>Large animal breeding farms bundle together into single model structures to fix lag.</p></div>
-                <div class="feature-item"><h3>Optimized Network Packets</h3><p>Stripped down player packet frames reduce standard mobile data usage limits.</p></div>
-                <div class="feature-item"><h3>ClearLag Sweeper Timers</h3><p>Ground item drops sweep systematically every 20 minutes with on-screen text alerts.</p></div>
-                <div class="feature-item"><h3>Direct NVMe SSD Storage</h3><p>World files run on fast NVMe drives to prevent inventory save stutters.</p></div>
-                <div class="feature-item"><h3>Intelligent Mob Culling</h3><p>Monsters outside of base render view ranges stop using heavy tick processing lanes.</p></div>
-                <div class="feature-item"><h3>Scheduled Daily Restarts</h3><p>Server loops refresh daily at 4 AM to keep performance perfect for the day.</p></div>
-                <div class="feature-item"><h3>Automated Cloud Backups</h3><p>Every single block is saved to cloud files every 6 hours so progress is never lost.</p></div>
-                <div class="feature-item"><h3>Non Blocking Database</h3><p>Player join requests don't cause micro-stutters for people already playing.</p></div>
-                <div class="feature-item"><h3>Live Performance Monitors</h3><p>Admins track active ticks per second constantly to fix lag sources instantly.</p></div>
+            <div class="info-box">
+                <h2>Community Rules</h2>
+                <p>Griefing, raiding, and combat logging are completely allowed mechanics. Standard engine modifications like hack clients, fly engines, or x-ray resource setups will result in an immediate hardware profile ban.</p>
             </div>
         </div>
     </section>
 
     <script>
-        function copyWebSocketAddress() {
-            const rawURI = "wss://berrysmpS2.eagler";
-            const copyBtn = document.getElementById('copyAction');
+        function copyIpAddress() {
+            const rawIP = "wss://berrysmpS2.eagler";
+            const btn = document.getElementById('copyBtn');
             
-            navigator.clipboard.writeText(rawURI).then(() => {
-                copyBtn.innerText = 'Copied!';
-                copyBtn.style.background = '#00f2fe';
+            navigator.clipboard.writeText(rawIP).then(() => {
+                btn.innerText = 'Copied';
+                btn.style.background = '#2ec4b6';
                 
                 setTimeout(() => {
-                    copyBtn.innerText = 'Copy Route';
-                    copyBtn.style.background = '#f3f2f7';
-                }, 2000);
+                    btn.innerText = 'Copy';
+                    btn.style.background = '#ff2a5f';
+                }, 1500);
             });
         }
-
-        function switchCategory(catId) {
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.features-grid').forEach(grid => grid.classList.remove('active'));
-            
-            event.currentTarget.classList.add('active');
-            document.getElementById('cat-' + catId).classList.add('active');
-        }
-
-        setTimeout(() => {
-            document.getElementById('statusDot').style.backgroundColor = '#00f2fe';
-            document.getElementById('statusText').innerText = 'Season 2 Online (1.5.2 - 1.26.2 Core)';
-        }, 1200);
     </script>
 </body>
 </html>
