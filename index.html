@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berry SMP S2 - by jumps and aroze<3 </title>
+    <title>Berry SMP</title>
     <style>
         * {
             box-sizing: border-box;
@@ -15,7 +15,7 @@
         body {
             background-color: #08060c;
             color: #fff;
-            padding: 40px 20px;
+            padding: 40px 20px 20px;
             text-align: center;
         }
 
@@ -102,6 +102,7 @@
             text-align: left;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             padding-top: 32px;
+            margin-bottom: 60px;
         }
 
         .content h2 {
@@ -116,13 +117,21 @@
             line-height: 1.6;
             margin-bottom: 24px;
         }
+
+        footer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #4b4556;
+            font-weight: 500;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>Berry<span>SMP</span></h1>
-        <div class="subtitle" id="serverStatus">Loading data loop...</div>
+        <div class="subtitle" id="serverStatus">loading the status n shiii - aroze</div>
         
         <div class="join-box" onclick="copyAddress()">
             <span id="ipText">wss://berrysmpS2.eagler.host</span>
@@ -141,13 +150,18 @@
             <h2>No Paid Store</h2>
             <p>We do not sell ranks, keys, or unbans here. Everything is 100% free to play for everyone. If you want to help keep the server alive, just smash that "Earn for Us" button right above to support the player network map &lt;3</p>
         </div>
+
+        <footer>
+            Server Owned by Oreo1234<br>
+            Site made by Jumps & Aroze
+        </footer>
     </div>
 
     <script>
-        // CONFIG PANEL — we gotta update it ourselves since eagler.host doesnt show a port....................................:( - JUMPS WOOHOO GASGDYASDAHGDS
+        // CONFIG PANEL — aroze, you have to manually change it, its not automatic dude T-T - jumps
         const currentPlayersOnline = 5; 
         const maxServerCapacity = 20; 
-        const currentServerState = "online"; // Set to "online", "offline", or "whitelist"
+        const currentServerState = "online"; // Set to "online", "offline", or "whitelist" 
 
         function displayStatus() {
             const statusDiv = document.getElementById('serverStatus');
