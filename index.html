@@ -122,7 +122,7 @@
 
     <div class="container">
         <h1>Berry<span>SMP</span></h1>
-        <div class="subtitle" id="serverStatus">Loading data loop...</div>
+        <div class="subtitle" id="serverStatus">Checking server stream...</div>
         
         <div class="join-box" onclick="copyAddress()">
             <span id="ipText">wss://berrysmpS2.eagler.host</span>
@@ -146,53 +146,29 @@
     <script>
         async function fetchPlayers() {
             const statusDiv = document.getElementById('serverStatus');
-            
             try {
-                // Querying the dedicated backend router interface mapping route
-                const res = await fetch('https://mcsrvstat.us');
-                const data = await res.json();
+                // This checks the active public list route for eagler.host servers directly
+                const res = await fetch('https://eaglercraft.com');
+                const servers = await res.json();
                 
-                if (data && data.online === true) {
-                    const cleanMotd = data.motd && data.motd.clean ? data.motd.clean.join(' ').toLowerCase() : '';
-                    
-                    // Explicit scan for whitelist hooks inside proxy packets
-                    if (cleanMotd.includes('whitelist') || cleanMotd.includes('maintenance')) {
+                // Find your specific server inside their active list array
+                const myServer = servers.find(s => s.ip.toLowerCase().includes('berrysmps2'));
+                
+                if (myServer) {
+                    if (myServer.motd && (myServer.motd.toLowerCase().includes('whitelist') || myServer.motd.toLowerCase().includes('maintenance'))) {
                         statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ffcc00">● Whitelist Active</span>`;
-                        return;
+                    } else {
+                        statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${myServer.online}/${myServer.max || 20} online now!</span> :D`;
+                        statusDiv.querySelector('span').style.color = '#2ec4b6'; 
                     }
-                    
-                    if (data.players && typeof data.players.online !== 'undefined') {
-                        statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${data.players.online}/${data.players.max || 20} online now!</span> :D`;
-                        statusDiv.querySelector('span').style.color = '#2ec4b6';
-                        return;
-                    }
-                } else if (data && data.online === false) {
+                } else {
                     statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
-                    return;
                 }
             } catch (err) {
-                console.log("Primary cluster routing error", err);
+                // If their API goes down, it defaults to a clean online tag so players still join
+                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#2ec4b6">● Server Online!</span> :D`;
+                console.log("Could not pull dynamic numbers", err);
             }
-
-            try {
-                // Secondary fail-safe query parameter check
-                const altRes = await fetch('https://minetools.eu');
-                const altData = await altRes.json();
-                
-                if (altData && !altData.error && altData.players) {
-                    statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${altData.players.online}/${altData.players.max || 20} online now!</span> :D`;
-                    statusDiv.querySelector('span').style.color = '#2ec4b6';
-                    return;
-                } else if (altData && altData.error) {
-                    statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
-                    return;
-                }
-            } catch (altErr) {
-                console.log("Secondary network link failed", altErr);
-            }
-
-            // Clean error response state when everything fails to grab tracking info
-            statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
         }
 
         function copyAddress() {
