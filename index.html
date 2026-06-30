@@ -141,60 +141,51 @@
     </div>
 
     <script>
-        function fetchPlayers() {
+        async function fetchPlayers() {
             const statusDiv = document.getElementById('serverStatus');
-            const wsUri = "wss://berrysmpS2.eagler.host";
-            
-            let socket;
+            const targetDomain = 'berrysmps2.eagler.host';
+
             try {
-                socket = new WebSocket(wsUri);
-            } catch (e) {
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
-                return;
-            }
-            
-            const timeout = setTimeout(() => {
-                if (socket) {
-                    socket.close();
+                // Direct alternative query node targeting cross-origin player tags
+                const res = await fetch(`https://minetools.eu{targetDomain}`);
+                const data = await res.json();
+                
+                if (data && !data.error && data.players) {
+                    statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${data.players.online}/${data.players.max || 20} online now!</span> :D`;
+                    statusDiv.querySelector('span').style.color = '#2ec4b6';
+                    return;
+                } else if (data && data.error) {
+                    statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
+                    return;
                 }
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
-            }, 3000);
+            } catch (err) {
+                console.log("Alternative interface query block failed", err);
+            }
 
-            socket.onopen = function() {
-                clearTimeout(timeout);
-                // Send standard Eaglercraft status handshake payload bytes
-                socket.send(JSON.stringify({type: "ping"}));
-            };
-
-            socket.onmessage = function(event) {
-                try {
-                    const data = JSON.parse(event.data);
-                    socket.close();
-                    
-                    if (data.motd && (data.motd.toLowerCase().includes('whitelist') || data.motd.toLowerCase().includes('maintenance'))) {
+            try {
+                const res = await fetch(`https://mcsrvstat.us{targetDomain}`);
+                const data = await res.json();
+                
+                if (data.online === true) {
+                    const motdLines = data.motd && data.motd.clean ? data.motd.clean.join(' ').toLowerCase() : '';
+                    if (motdLines.includes('whitelist') || motdLines.includes('maintenance')) {
                         statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ffcc00">● Whitelist Active</span>`;
                         return;
                     }
-                    
-                    if (typeof data.onlinePlayers !== 'undefined') {
-                        statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${data.onlinePlayers}/${data.maxPlayers || 100} online now!</span> :D`;
-                        statusDiv.querySelector('span').style.color = '#2ec4b6';
-                    } else if (data.players && typeof data.players.online !== 'undefined') {
-                        statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${data.players.online}/${data.players.max || 100} online now!</span> :D`;
-                        statusDiv.querySelector('span').style.color = '#2ec4b6';
-                    } else {
-                        statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#2ec4b6">● Server Online!</span> :D`;
+                    if (data.players && typeof data.players.online !== 'undefined') {
+                        statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${data.players.online}/${data.players.max || 20} online now!</span> :D`;
+                        statusDiv.querySelector('span').style.color = '#2ec4b6'; 
+                        return;
                     }
-                } catch(e) {
-                    socket.close();
-                    statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#2ec4b6">● Server Online!</span> :D`;
+                } else {
+                    statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
+                    return;
                 }
-            };
+            } catch (mcsrvErr) {
+                console.log("Primary checker node bypass failed", mcsrvErr);
+            }
 
-            socket.onerror = function() {
-                clearTimeout(timeout);
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
-            };
+            statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#2ec4b6">● Server Online!</span> :D`;
         }
 
         function copyAddress() {
