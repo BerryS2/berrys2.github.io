@@ -125,6 +125,7 @@
             <span id="ipText">wss://berrysmpS2.eagler.host</span>
             <button class="btn" id="copyBtn">Copy Link</button>
         </div>
+
         <div class="actions-row">
             <a href="https://discord.gg" target="_blank" class="btn-secondary">Join Discord Server</a>
             <a href="https://topeaglerservers.com" target="_blank" class="btn-secondary" style="color: #ff2a5f;">Earn for Us!</a>
@@ -141,21 +142,34 @@
 
     <script>
         async function fetchPlayers() {
+            const statusDiv = document.getElementById('serverStatus');
             try {
                 const res = await fetch('https://mcsrvstat.us');
                 const data = await res.json();
-                const statusDiv = document.getElementById('serverStatus');
                 
-                if (data.online) {
+                if (data.online && data.players && typeof data.players.online !== 'undefined') {
                     statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${data.players.online} online now!</span> :D`;
                     statusDiv.querySelector('span').style.color = '#2ec4b6'; 
-                } else {
-                    statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
+                    return;
                 }
             } catch (err) {
-                document.getElementById('serverStatus').innerHTML = `Season 2 Lifesteal — <span>● Online!</span> <3`;
-                console.log("Could not pull dynamic numbers", err);
+                console.log("Primary API check failed", err);
             }
+
+            try {
+                const altRes = await fetch('https://minetools.eu');
+                const altData = await altRes.json();
+                
+                if (altData && !altData.error) {
+                    statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${altData.players.online} online now!</span> :D`;
+                    statusDiv.querySelector('span').style.color = '#2ec4b6';
+                    return;
+                }
+            } catch (altErr) {
+                console.log("Secondary API check failed", altErr);
+            }
+
+            statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#2ec4b6">● Server is Online!</span> :D`;
         }
 
         function copyAddress() {
