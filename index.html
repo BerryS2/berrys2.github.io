@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berry SMP | S2 Lifesteal</title>
+    <title>Berry SMP S2 - by jumps and aroze<3 </title>
     <style>
         * {
             box-sizing: border-box;
@@ -122,7 +122,7 @@
 
     <div class="container">
         <h1>Berry<span>SMP</span></h1>
-        <div class="subtitle" id="serverStatus">Checking server stream...</div>
+        <div class="subtitle" id="serverStatus">Loading data loop...</div>
         
         <div class="join-box" onclick="copyAddress()">
             <span id="ipText">wss://berrysmpS2.eagler.host</span>
@@ -130,8 +130,8 @@
         </div>
 
         <div class="actions-row">
-            <a href="https://discord.gg" target="_blank" rel="noopener noreferrer" class="btn-secondary">Join Discord Server</a>
-            <a href="https://topeaglerservers.com" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="color: #ff2a5f;">Earn for Us!</a>
+            <a href="https://discord.gg/fdcgxVs7p" target="_blank" rel="noopener noreferrer" class="btn-secondary">Join Discord Server</a>
+            <a href="https://topeaglerservers.com/earn/berrysmpS2" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="color: #ff2a5f;">Earn for Us!</a>
         </div>
 
         <div class="content">
@@ -144,30 +144,21 @@
     </div>
 
     <script>
-        async function fetchPlayers() {
+        // CONFIG PANEL — we gotta update it ourselves since eagler.host doesnt show a port....................................:( - JUMPS WOOHOO GASGDYASDAHGDS
+        const currentPlayersOnline = 5; 
+        const maxServerCapacity = 20; 
+        const currentServerState = "online"; // Set to "online", "offline", or "whitelist"
+
+        function displayStatus() {
             const statusDiv = document.getElementById('serverStatus');
-            try {
-                // This checks the active public list route for eagler.host servers directly
-                const res = await fetch('https://eaglercraft.com');
-                const servers = await res.json();
-                
-                // Find your specific server inside their active list array
-                const myServer = servers.find(s => s.ip.toLowerCase().includes('berrysmps2'));
-                
-                if (myServer) {
-                    if (myServer.motd && (myServer.motd.toLowerCase().includes('whitelist') || myServer.motd.toLowerCase().includes('maintenance'))) {
-                        statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ffcc00">● Whitelist Active</span>`;
-                    } else {
-                        statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${myServer.online}/${myServer.max || 20} online now!</span> :D`;
-                        statusDiv.querySelector('span').style.color = '#2ec4b6'; 
-                    }
-                } else {
-                    statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
-                }
-            } catch (err) {
-                // If their API goes down, it defaults to a clean online tag so players still join
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#2ec4b6">● Server Online!</span> :D`;
-                console.log("Could not pull dynamic numbers", err);
+            
+            if (currentServerState === "offline") {
+                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
+            } else if (currentServerState === "whitelist") {
+                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ffcc00">● Whitelist Active</span>`;
+            } else {
+                statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${currentPlayersOnline}/${maxServerCapacity} online now!</span> :D`;
+                statusDiv.querySelector('span').style.color = '#2ec4b6';
             }
         }
 
@@ -186,7 +177,7 @@
             });
         }
 
-        window.onload = fetchPlayers;
+        window.onload = displayStatus;
     </script>
 </body>
 </html>
