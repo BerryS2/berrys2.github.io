@@ -42,7 +42,6 @@
             font-weight: 500;
         }
 
-        /* Server address card */
         .join-box {
             background: #110d1a;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -72,7 +71,6 @@
             text-decoration: none;
         }
 
-        /* Navigation or secondary actions */
         .actions-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -97,7 +95,6 @@
             border-color: rgba(255, 42, 95, 0.3);
         }
 
-        /* Clean simple content loop */
         .content {
             text-align: left;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -122,10 +119,10 @@
 
     <div class="container">
         <h1>Berry<span>SMP</span></h1>
-        <div class="subtitle">Season 2 Lifesteal — completely free to play :D</div>
+        <div class="subtitle" id="serverStatus">Season 2 Lifesteal — completely free to play :D</div>
         
         <div class="join-box" onclick="copyAddress()">
-            <span id="ipText">wss://berrysmpS2.eagler</span>
+            <span id="ipText">wss://berrysmpS2.eagler.host</span>
             <button class="btn" id="copyBtn">Copy Link</button>
         </div>
         <div class="actions-row">
@@ -143,8 +140,26 @@
     </div>
 
     <script>
+        async function fetchPlayers() {
+            try {
+                const res = await fetch('https://mcsrvstat.us');
+                const data = await res.json();
+                const statusDiv = document.getElementById('serverStatus');
+                
+                if (data.online) {
+                    statusDiv.innerHTML = `Season 2 Lifesteal — <span>● ${data.players.online} online now!</span> :D`;
+                    statusDiv.querySelector('span').style.color = '#2ec4b6'; 
+                } else {
+                    statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
+                }
+            } catch (err) {
+                document.getElementById('serverStatus').innerHTML = `Season 2 Lifesteal — <span>● Online!</span> <3`;
+                console.log("Could not pull dynamic numbers", err);
+            }
+        }
+
         function copyAddress() {
-            const rawURI = "wss://berrysmpS2.eagler";
+            const rawURI = "wss://berrysmpS2.eagler.host";
             const btn = document.getElementById('copyBtn');
             
             navigator.clipboard.writeText(rawURI).then(() => {
@@ -157,6 +172,8 @@
                 }, 1500);
             });
         }
+
+        window.onload = fetchPlayers;
     </script>
 </body>
 </html>
