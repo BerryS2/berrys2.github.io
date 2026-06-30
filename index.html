@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berry SMP | Season 2</title>
+    <style>
+        :root {
+            --bg-color: #0f0c1b;
+            --card-bg: #1c1530;
+            --accent-berry: #d81e5b;
+            --accent-glow: #f0548a;
+            --text-main: #f8f7f9;
+            --text-muted: #a39fbc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(15, 12, 27, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--accent-berry);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #2d1236 0%, var(--bg-color) 70%);
+        }
+
+        .season-badge {
+            background: var(--accent-berry);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px rgba(216, 30, 91, 0.4);
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* IP Copy Button */
+        .ip-container {
+            background: var(--card-bg);
+            padding: 10px 10px 10px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(216, 30, 91, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.3s;
+        }
+
+        .ip-container:hover {
+            transform: scale(1.02);
+            border-color: var(--accent-berry);
+        }
+
+        .ip-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 700;
+            font-size: 18px;
+            margin-right: 20px;
+            letter-spacing: 1px;
+        }
+
+        .ip-btn {
+            background: var(--accent-berry);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .ip-container:hover .ip-btn {
+            background: var(--accent-glow);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 4px;
+            background: var(--accent-berry);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(216, 30, 91, 0.1);
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header { padding: 20px 5%; }
+            nav { display: none; } /* Simplified for template */
+            .hero h1 { font-size: 42px; }
+            .hero p { font-size: 16px; }
+            .ip-text { font-size: 15px; margin-right: 10px; }
+            .ip-btn { padding: 10px 18px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Berry<span>SMP</span></div>
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="#features">Features</a>
+            <a href="#rules">Rules</a>
+            <a href="#discord">Discord</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="season-badge">Season 2 is Live</div>
+        <h1>Welcome to Berry SMP</h1>
+        <p>A vanilla-plus survival experience built for a tight-knit community. Explore, build empires, and survive together on Season 2.</p>
+        
+        <!-- Change the data-ip attribute to your actual server IP -->
+        <div class="ip-container" id="ipCard" data-ip="://berrysmp.com" onclick="copyIp()">
+            <span class="ip-text">://berrysmp.com</span>
+            <button class="ip-btn" id="copyBtn">Copy IP</button>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <h2 class="section-title">Why Join Us?</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Fresh Season 2 Map</h3>
+                <p>An entirely untouched world map featuring brand new generation. Plenty of space to claim territory and start massive build projects.</p>
+            </div>
+            <div class="card">
+                <h3>Thriving Economy</h3>
+                <p>Player-driven diamond economy featuring a central shopping district. Establish your own shop or trade with players freely.</p>
+            </div>
+            <div class="card">
+                <h3>Enhanced Vanilla</h3>
+                <p>Carefully selected quality-of-life plugins that preserve the vanilla Minecraft feel while keeping multiplayer engaging and secure.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function copyIp() {
+            const ipCard = document.getElementById('ipCard');
+            const copyBtn = document.getElementById('copyBtn');
+            const ipText = ipCard.getAttribute('data-ip');
+            
+            navigator.clipboard.writeText(ipText).then(() => {
+                copyBtn.innerText = 'Copied!';
+                copyBtn.style.background = '#2ec4b6';
+                
+                setTimeout(() => {
+                    copyBtn.innerText = 'Copy IP';
+                    copyBtn.style.background = '#d81e5b';
+                }, 2000);
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
