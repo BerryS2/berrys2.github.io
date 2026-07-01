@@ -3,408 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Join BerrySMP, a free-to-play Minecraft Lifesteal server. Unique PvP rules with permanent heart stealing and intense raids.">
+    <meta name="description" content="Join BerrySMP, a free-to-play Minecraft Lifesteal server.">
     <meta property="og:title" content="BerrySMP - Lifesteal Minecraft Server">
-    <meta property="og:description" content="Join BerrySMP Season 2 Lifesteal. Free-to-play, no pay-to-win. Permanent heart stealing PvP.">
+    <meta property="og:description" content="Join BerrySMP Season 2 Lifesteal. Free-to-play, no pay-to-win.">
     <meta property="og:url" content="https://berrys2.github.io/">
-    <meta property="og:type" content="website">
     <meta name="theme-color" content="#ff2a5f">
     <title>BerrySMP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: #1a1a1a;
-            background-image: 
-                linear-gradient(0deg, transparent 24%, rgba(255, 42, 95, 0.05) 25%, rgba(255, 42, 95, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 42, 95, 0.05) 75%, rgba(255, 42, 95, 0.05) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(255, 42, 95, 0.05) 25%, rgba(255, 42, 95, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 42, 95, 0.05) 75%, rgba(255, 42, 95, 0.05) 76%, transparent 77%, transparent);
-            background-size: 40px 40px;
+            background: #1a1a1a;
             color: #fff;
-            padding: 40px 20px 20px;
-            text-align: center;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
 
         .container {
-            max-width: 700px;
-            margin: 40px auto 0;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
         }
 
         h1 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 56px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8);
-            animation: pixelBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes pixelBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            font-size: 48px;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
         h1 span {
             color: #ff2a5f;
-            text-shadow: 3px 3px 0px rgba(255, 42, 95, 0.5);
         }
 
-        .subtitle {
+        .status {
+            font-size: 13px;
             color: #8b8599;
-            font-size: 14px;
-            margin-bottom: 32px;
-            font-weight: 500;
-            letter-spacing: 1px;
+            margin-bottom: 30px;
         }
 
-        .join-box {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            border: 3px solid #ff2a5f;
-            padding: 16px 20px;
-            border-radius: 0px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
+        .join-section {
+            background: #2a2a2a;
+            border: 2px solid #ff2a5f;
+            padding: 16px;
+            margin-bottom: 20px;
             cursor: pointer;
-            box-shadow: 0 4px 0 rgba(255, 42, 95, 0.3);
-            transition: transform 0.1s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .join-box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 rgba(255, 42, 95, 0.3);
+        .join-section span {
+            font-family: monospace;
+            font-size: 14px;
         }
 
-        .join-box:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 rgba(255, 42, 95, 0.3);
-        }
-
-        .join-box span {
-            font-family: 'Courier New', monospace;
-            font-size: 15px;
+        .copy-btn {
+            background: #ff2a5f;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 12px;
             font-weight: bold;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background: #ff1a4f;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
         }
 
         .btn {
-            background: #ff2a5f;
-            color: #fff;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 0px;
-            font-size: 13px;
-            font-weight: 700;
-            cursor: pointer;
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #444;
+            background: #2a2a2a;
+            color: white;
             text-decoration: none;
-            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4);
-            transition: all 0.1s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
         }
 
         .btn:hover {
-            background: #ff1a4f;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4);
+            border-color: #ff2a5f;
         }
 
-        .btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+        .btn-discord {
+            border-color: #5865f2;
         }
 
-        .actions-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 48px;
-        }
-
-        .btn-secondary {
-            background: #2a2a2a;
-            border: 3px solid #00b050;
-            color: #fff;
-            padding: 16px;
-            border-radius: 0px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.1s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 0 rgba(0, 176, 80, 0.3);
-            cursor: pointer;
-        }
-
-        .btn-secondary:hover {
-            background: #00b050;
-            color: #000;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 0 rgba(0, 176, 80, 0.5);
-        }
-
-        .btn-secondary:active {
-            transform: translateY(2px);
-            box-shadow: 0 2px 0 rgba(0, 176, 80, 0.3);
-        }
-
-        .btn-secondary.earn {
-            border-color: #ffd700;
-        }
-
-        .btn-secondary.earn:hover {
-            background: #ffd700;
-            box-shadow: 0 6px 0 rgba(255, 215, 0, 0.5);
+        .btn-discord:hover {
+            background: #5865f2;
+            color: white;
         }
 
         h2 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 24px;
+            font-size: 18px;
             margin-bottom: 16px;
-            color: #ff2a5f;
-            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
-            letter-spacing: 1px;
+            border-bottom: 2px solid #ff2a5f;
+            padding-bottom: 8px;
         }
 
-        .cards {
+        .items-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-bottom: 48px;
+            gap: 12px;
+            margin-bottom: 40px;
         }
 
-        .card {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            border: 3px solid #444;
-            padding: 20px;
-            border-radius: 0px;
-            box-shadow: inset 0 0 0 1px rgba(255, 42, 95, 0.2), 0 4px 0 rgba(0, 0, 0, 0.4);
-            transition: all 0.1s;
-        }
-
-        .card:hover {
-            border-color: #ff2a5f;
-            transform: translateY(-3px);
-            box-shadow: inset 0 0 0 1px rgba(255, 42, 95, 0.5), 0 6px 0 rgba(255, 42, 95, 0.2);
-        }
-
-        .card-icon {
-            width: 32px;
-            height: 32px;
-            margin: 0 auto 12px;
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
-        }
-
-        .card h3 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 14px;
-            margin-bottom: 12px;
-            color: #00b050;
-            letter-spacing: 0.5px;
-        }
-
-        .card p {
-            color: #8b8599;
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        .content {
-            border-top: 3px dashed #ff2a5f;
-            padding-top: 32px;
-            margin-bottom: 60px;
-        }
-
-        .section {
-            margin-bottom: 36px;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(255, 42, 95, 0.05) 0%, rgba(0, 176, 80, 0.05) 100%);
-            border: 2px solid rgba(255, 42, 95, 0.1);
-            border-radius: 0px;
-        }
-
-        .section h3 {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: #ffd700;
-            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
-            letter-spacing: 0.5px;
-        }
-
-        .section p {
-            color: #8b8599;
-            font-size: 13px;
-            line-height: 1.8;
-            margin-bottom: 8px;
-        }
-
-        .recipe-note {
-            background: #1a1a1a;
-            border: 2px solid #444;
+        .item {
+            background: #2a2a2a;
+            border: 1px solid #444;
             padding: 16px;
-            border-radius: 0px;
-            margin-top: 16px;
-            font-size: 13px;
-            color: #8b8599;
-            line-height: 1.6;
+            text-align: center;
         }
 
-        .recipe-note strong {
-            color: #ff2a5f;
+        .item-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 10px;
+            image-rendering: pixelated;
+        }
+
+        .item-name {
+            font-weight: bold;
+            font-size: 13px;
         }
 
         footer {
-            margin-top: 40px;
+            text-align: center;
             font-size: 11px;
             color: #4b4556;
-            font-weight: 500;
-            line-height: 1.8;
-            letter-spacing: 0.5px;
-        }
-
-        .footer-credit {
-            margin-top: 16px;
-            font-size: 10px;
-            color: #3b3544;
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 36px;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-            }
-
-            .actions-row {
-                grid-template-columns: 1fr;
-            }
-
-            h2 {
-                font-size: 18px;
-            }
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Berry<span>SMP</span></h1>
-        <div class="subtitle" id="serverStatus">Loading connection status...</div>
-        
-        <div class="join-box" onclick="copyAddress()">
+        <header>
+            <h1>Berry<span>SMP</span></h1>
+            <div class="status" id="serverStatus">checking status...</div>
+        </header>
+
+        <div class="join-section" onclick="copyAddress()">
             <span id="ipText">wss://berrysmpS2.eagler.host</span>
-            <button class="btn" id="copyBtn">Copy</button>
+            <button class="copy-btn" id="copyBtn">Copy</button>
         </div>
 
-        <div class="actions-row">
-            <a href="https://discord.gg/fdcgxVs7p" target="_blank" rel="noopener noreferrer" class="btn-secondary">🎮 Discord</a>
-            <a href="https://topeaglerservers.com/earn/berrysmpS2" target="_blank" rel="noopener noreferrer" class="btn-secondary earn">⭐ Earn</a>
+        <div class="buttons">
+            <a href="https://discord.gg/fdcgxVs7p" target="_blank" class="btn btn-discord">Discord</a>
+            <a href="https://topeaglerservers.com/earn/berrysmpS2" target="_blank" class="btn">Earn</a>
         </div>
 
-        <h2>What's Lifesteal?</h2>
-        <div class="cards">
-            <div class="card">
-                <img class="card-icon" src="https://wiki.vg/images/thumb/3/3d/Wooden_Sword_JE4_BE2.png/32px-Wooden_Sword_JE4_BE2.png" alt="Sword">
-                <h3>Steal Hearts</h3>
-                <p>Kill someone in PvP? You steal one of their hearts permanently. Build your power!</p>
+        <h2>Custom Items</h2>
+        <div class="items-list">
+            <div class="item">
+                <img class="item-icon" src="https://cdn-icons-png.flaticon.com/512/3556/3556091.png" alt="Mace">
+                <div class="item-name">Mace</div>
             </div>
-            <div class="card">
-                <img class="card-icon" src="https://wiki.vg/images/thumb/3/37/Red_Heart_Container_JE_BE.png/32px-Red_Heart_Container_JE_BE.png" alt="Heart">
-                <h3>Lose Hearts</h3>
-                <p>Get eliminated when your hearts hit 0. Your team can revive you before next season.</p>
+            <div class="item">
+                <img class="item-icon" src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Spear">
+                <div class="item-name">Spears</div>
             </div>
-            <div class="card">
-                <img class="card-icon" src="https://wiki.vg/images/thumb/b/b6/TNT_JE4_BE2.png/32px-TNT_JE4_BE2.png" alt="TNT">
-                <h3>Full Chaos</h3>
-                <p>Raiding and griefing allowed. No safe zones. Only skill and strategy matter.</p>
+            <div class="item">
+                <img class="item-icon" src="https://cdn-icons-png.flaticon.com/512/2318/2318500.png" alt="Wind Charge">
+                <div class="item-name">Wind Charges</div>
             </div>
-            <div class="card">
-                <img class="card-icon" src="https://wiki.vg/images/thumb/e/e9/Emerald_JE4_BE3.png/32px-Emerald_JE4_BE3.png" alt="Emerald">
-                <h3>100% Free</h3>
-                <p>Zero pay-to-win. Everyone starts equal. Support us? Hit that Earn button!</p>
-            </div>
-        </div>
-
-        <div class="content">
-            <div class="section">
-                <h3>📋 Server Rules</h3>
-                <p>✓ Lifesteal is enabled — every kill steals 1 permanent heart</p>
-                <p>✓ PvP is everywhere — fight for dominance</p>
-                <p>✓ Raiding and griefing are allowed — protect your base!</p>
-                <p>✓ Get eliminated at 0 hearts — your team can revive you next season</p>
-                <p>✓ Play fair and have fun — toxicity gets you banned</p>
-            </div>
-
-            <div class="section">
-                <h3>⚔️ Custom Items</h3>
-                <p><strong>Mace:</strong> Heavy melee weapon for devastating hits</p>
-                <p><strong>Spears:</strong> Long-range projectile weapons for combat</p>
-                <p><strong>Wind Charges:</strong> Explosive utility items with knockback effects</p>
-                <p><strong>Hearts:</strong> Permanent heart items dropped from special loot</p>
-                <div class="recipe-note">
-                    <strong>Full recipes available in Discord!</strong> Join our server for crafting details and updates.
-                </div>
-            </div>
-
-            <div class="section">
-                <h3>🎮 Getting Started</h3>
-                <p><strong>1.</strong> Copy the server address above (wss://berrysmpS2.eagler.host)</p>
-                <p><strong>2.</strong> Launch Eaglercraft and add a multiplayer server</p>
-                <p><strong>3.</strong> Paste the address and connect</p>
-                <p><strong>4.</strong> Join our Discord for help and team up!</p>
+            <div class="item">
+                <img class="item-icon" src="https://cdn-icons-png.flaticon.com/512/1995/1995488.png" alt="Heart">
+                <div class="item-name">Hearts</div>
             </div>
         </div>
 
         <footer>
-            Season 2 — Lifesteal Edition<br>
-            Server Owned by Oreo1234
-            <div class="footer-credit">Made by Jumps & Aroze</div>
+            made by jumps & aroze
         </footer>
     </div>
 
     <script>
-        // STATUS CONFIG — UPDATE THIS LINE MANUALLY AROZE GOODNESS
-        // Choose between: "online" , "offline" , or "whitelist"
-        const currentServerState = "online"; 
+        const serverState = "online";
 
         function displayStatus() {
             const statusDiv = document.getElementById('serverStatus');
-            
-            if (currentServerState === "offline") {
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">⚠️ Server Offline</span>`;
-            } else if (currentServerState === "whitelist") {
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ffd700">🔒 Whitelist Active</span>`;
+            if (serverState === "online") {
+                statusDiv.innerHTML = '✓ Server Online';
+                statusDiv.style.color = '#00b050';
+            } else if (serverState === "offline") {
+                statusDiv.innerHTML = '⚠ Server Offline';
+                statusDiv.style.color = '#ff2a5f';
             } else {
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#00b050">✓ Server Online</span>`;
+                statusDiv.innerHTML = '🔒 Whitelist Active';
+                statusDiv.style.color = '#ffd700';
             }
         }
 
         function copyAddress() {
-            const rawURI = "wss://berrysmpS2.eagler.host";
-            const btn = document.getElementById('copyBtn');
-            
-            navigator.clipboard.writeText(rawURI).then(() => {
+            const address = "wss://berrysmpS2.eagler.host";
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = document.getElementById('copyBtn');
                 btn.innerText = 'Copied!';
-                btn.style.background = '#00b050';
-                
                 setTimeout(() => {
                     btn.innerText = 'Copy';
-                    btn.style.background = '#ff2a5f';
                 }, 1500);
             });
         }
