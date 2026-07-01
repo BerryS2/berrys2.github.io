@@ -10,126 +10,297 @@
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#ff2a5f">
     <title>BerrySMP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         body {
-            background-color: #08060c;
+            background-color: #1a1a1a;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(255, 42, 95, 0.05) 25%, rgba(255, 42, 95, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 42, 95, 0.05) 75%, rgba(255, 42, 95, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 42, 95, 0.05) 25%, rgba(255, 42, 95, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 42, 95, 0.05) 75%, rgba(255, 42, 95, 0.05) 76%, transparent 77%, transparent);
+            background-size: 40px 40px;
             color: #fff;
             padding: 40px 20px 20px;
             text-align: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             margin: 40px auto 0;
         }
 
         h1 {
-            font-size: 48px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 56px;
             font-weight: 900;
-            letter-spacing: -1px;
+            letter-spacing: 2px;
             margin-bottom: 8px;
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8);
+            animation: pixelBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes pixelBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         h1 span {
             color: #ff2a5f;
+            text-shadow: 3px 3px 0px rgba(255, 42, 95, 0.5);
         }
 
         .subtitle {
             color: #8b8599;
-            font-size: 16px;
+            font-size: 14px;
             margin-bottom: 32px;
             font-weight: 500;
+            letter-spacing: 1px;
         }
 
         .join-box {
-            background: #110d1a;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 12px 12px 12px 20px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 3px solid #ff2a5f;
+            padding: 16px 20px;
+            border-radius: 0px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
             cursor: pointer;
+            box-shadow: 0 4px 0 rgba(255, 42, 95, 0.3);
+            transition: transform 0.1s;
+        }
+
+        .join-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 rgba(255, 42, 95, 0.3);
+        }
+
+        .join-box:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(255, 42, 95, 0.3);
         }
 
         .join-box span {
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-size: 15px;
+            font-weight: bold;
         }
 
         .btn {
             background: #ff2a5f;
             color: #fff;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 12px 24px;
+            border-radius: 0px;
             font-size: 13px;
             font-weight: 700;
             cursor: pointer;
             text-decoration: none;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.4);
+            transition: all 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background: #ff1a4f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
         }
 
         .actions-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 16px;
             margin-bottom: 48px;
         }
 
         .btn-secondary {
-            background: #110d1a;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: #2a2a2a;
+            border: 3px solid #00b050;
             color: #fff;
-            padding: 14px;
-            border-radius: 8px;
+            padding: 16px;
+            border-radius: 0px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.15s;
+            transition: all 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 0 rgba(0, 176, 80, 0.3);
+            cursor: pointer;
         }
 
         .btn-secondary:hover {
-            background: #181324;
-            border-color: rgba(255, 42, 95, 0.3);
+            background: #00b050;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 rgba(0, 176, 80, 0.5);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 rgba(0, 176, 80, 0.3);
+        }
+
+        .btn-secondary.earn {
+            border-color: #ffd700;
+        }
+
+        .btn-secondary.earn:hover {
+            background: #ffd700;
+            box-shadow: 0 6px 0 rgba(255, 215, 0, 0.5);
+        }
+
+        h2 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            margin-bottom: 16px;
+            color: #ff2a5f;
+            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.8);
+            letter-spacing: 1px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 3px solid #444;
+            padding: 20px;
+            border-radius: 0px;
+            box-shadow: inset 0 0 0 1px rgba(255, 42, 95, 0.2), 0 4px 0 rgba(0, 0, 0, 0.4);
+            transition: all 0.1s;
+        }
+
+        .card:hover {
+            border-color: #ff2a5f;
+            transform: translateY(-3px);
+            box-shadow: inset 0 0 0 1px rgba(255, 42, 95, 0.5), 0 6px 0 rgba(255, 42, 95, 0.2);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            margin-bottom: 12px;
+            color: #00b050;
+            letter-spacing: 0.5px;
+        }
+
+        .card p {
+            color: #8b8599;
+            font-size: 12px;
+            line-height: 1.6;
         }
 
         .content {
-            text-align: left;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 3px dashed #ff2a5f;
             padding-top: 32px;
             margin-bottom: 60px;
         }
 
-        .content h2 {
-            font-size: 20px;
-            font-weight: 700;
+        .section {
+            margin-bottom: 36px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 42, 95, 0.05) 0%, rgba(0, 176, 80, 0.05) 100%);
+            border: 2px solid rgba(255, 42, 95, 0.1);
+            border-radius: 0px;
+        }
+
+        .section h3 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #ffd700;
+            text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+            letter-spacing: 0.5px;
+        }
+
+        .section p {
+            color: #8b8599;
+            font-size: 13px;
+            line-height: 1.8;
             margin-bottom: 8px;
         }
 
-        .content p {
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .recipe {
+            background: #1a1a1a;
+            border: 2px solid #444;
+            padding: 12px;
+            border-radius: 0px;
+            font-size: 11px;
             color: #8b8599;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 24px;
+        }
+
+        .recipe strong {
+            color: #00b050;
+            display: block;
+            margin-bottom: 6px;
         }
 
         footer {
             margin-top: 40px;
-            font-size: 12px;
+            font-size: 11px;
             color: #4b4556;
             font-weight: 500;
-            line-height: 1.6;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-credit {
+            margin-top: 16px;
+            font-size: 10px;
+            color: #3b3544;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .actions-row {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
@@ -141,25 +312,91 @@
         
         <div class="join-box" onclick="copyAddress()">
             <span id="ipText">wss://berrysmpS2.eagler.host</span>
-            <button class="btn" id="copyBtn">Copy Link</button>
+            <button class="btn" id="copyBtn">Copy</button>
         </div>
 
         <div class="actions-row">
-            <a href="https://discord.gg/fdcgxVs7p" target="_blank" rel="noopener noreferrer" class="btn-secondary">Join Discord Server</a>
-            <a href="https://topeaglerservers.com/earn/berrysmpS2" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="color: #ff2a5f;">Earn for Us!</a>
+            <a href="https://discord.gg/fdcgxVs7p" target="_blank" rel="noopener noreferrer" class="btn-secondary">🎮 Discord</a>
+            <a href="https://topeaglerservers.com/earn/berrysmpS2" target="_blank" rel="noopener noreferrer" class="btn-secondary earn">⭐ Earn</a>
+        </div>
+
+        <h2>What's Lifesteal?</h2>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">⚔️</div>
+                <h3>Steal Hearts</h3>
+                <p>Kill someone in PvP? You steal one of their hearts permanently. Build your power!</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">❤️</div>
+                <h3>Lose Hearts</h3>
+                <p>Get eliminated when your hearts hit 0. Your team can revive you before next season.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💥</div>
+                <h3>Full Chaos</h3>
+                <p>Raiding and griefing allowed. No safe zones. Only skill and strategy matter.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💰</div>
+                <h3>100% Free</h3>
+                <p>Zero pay-to-win. Everyone starts equal. Support us? Hit that Earn button!</p>
+            </div>
         </div>
 
         <div class="content">
-            <h2>Lifesteal Rules</h2>
-            <p>If you drop someone in PvP, you steal one of their hearts permanently. Lose all your hearts and you get kicked or eliminated until your team revives you. Raiding and griefing are allowed but play fairly and have fun!</p>
+            <div class="section">
+                <h3>📋 Server Rules</h3>
+                <p>✓ Lifesteal is enabled — every kill steals 1 permanent heart</p>
+                <p>✓ PvP is everywhere — fight for dominance</p>
+                <p>✓ Raiding and griefing are allowed — protect your base!</p>
+                <p>✓ Get eliminated at 0 hearts — your team can revive you next season</p>
+                <p>✓ Play fair and have fun — toxicity gets you banned</p>
+            </div>
 
-            <h2>No Paid Store</h2>
-            <p>We do not sell ranks, keys, or unbans here. Everything is 100% free to play for everyone. If you want to help keep the server alive, just smash that "Earn for Us" button right above. Every bit helps!</p>
+            <div class="section">
+                <h3>🔧 Custom Recipes</h3>
+                <div class="recipe-grid">
+                    <div class="recipe">
+                        <strong>Respawn Anchor</strong>
+                        Glowstone + Amethyst + Gold
+                    </div>
+                    <div class="recipe">
+                        <strong>Netherite Block</strong>
+                        9 Netherite Ingots
+                    </div>
+                    <div class="recipe">
+                        <strong>Dragon Egg</strong>
+                        Void Ore + 8 Endstone
+                    </div>
+                    <div class="recipe">
+                        <strong>Wither Star</strong>
+                        Soul Sand + Wither Bone
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>✨ Custom Items</h3>
+                <p>⭐ <strong>Void Ore:</strong> Ultra-rare ore found in the void. Craft it for mega items.</p>
+                <p>⭐ <strong>Heart Shards:</strong> Drop from bosses. 8 shards = 1 permanent heart!</p>
+                <p>⭐ <strong>Wither Bone:</strong> Used in endgame recipes. Dropped by the Wither.</p>
+                <p>⭐ <strong>Soul Sand Dust:</strong> Craft potions and enchantments with it.</p>
+            </div>
+
+            <div class="section">
+                <h3>🎮 Getting Started</h3>
+                <p><strong>1.</strong> Copy the server address above (wss://berrysmpS2.eagler.host)</p>
+                <p><strong>2.</strong> Launch Eaglercraft and add a multiplayer server</p>
+                <p><strong>3.</strong> Paste the address and connect</p>
+                <p><strong>4.</strong> Join our Discord for help and team up!</p>
+            </div>
         </div>
 
         <footer>
-            Server Owned by Oreo1234<br>
-            Site made by Jumps and Aroze
+            Season 2 — Lifesteal Edition<br>
+            Server Owned by Oreo1234
+            <div class="footer-credit">Made by Jumps & Aroze</div>
         </footer>
     </div>
 
@@ -172,12 +409,11 @@
             const statusDiv = document.getElementById('serverStatus');
             
             if (currentServerState === "offline") {
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">Server Offline :(</span>`;
+                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ff2a5f">⚠️ Server Offline</span>`;
             } else if (currentServerState === "whitelist") {
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ffcc00">● Whitelist Active</span>`;
+                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#ffd700">🔒 Whitelist Active</span>`;
             } else {
-                statusDiv.innerHTML = `Season 2 Lifesteal — <span>● Server Online!</span> :D`;
-                statusDiv.querySelector('span').style.color = '#2ec4b6';
+                statusDiv.innerHTML = `Season 2 Lifesteal — <span style="color:#00b050">✓ Server Online</span>`;
             }
         }
 
@@ -187,10 +423,10 @@
             
             navigator.clipboard.writeText(rawURI).then(() => {
                 btn.innerText = 'Copied!';
-                btn.style.background = '#2ec4b6';
+                btn.style.background = '#00b050';
                 
                 setTimeout(() => {
-                    btn.innerText = 'Copy Link';
+                    btn.innerText = 'Copy';
                     btn.style.background = '#ff2a5f';
                 }, 1500);
             });
