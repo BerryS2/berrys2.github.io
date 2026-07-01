@@ -199,8 +199,11 @@
         }
 
         .card-icon {
-            font-size: 32px;
-            margin-bottom: 12px;
+            width: 32px;
+            height: 32px;
+            margin: 0 auto 12px;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
 
         .card h3 {
@@ -247,26 +250,19 @@
             margin-bottom: 8px;
         }
 
-        .recipe-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 16px;
-        }
-
-        .recipe {
+        .recipe-note {
             background: #1a1a1a;
             border: 2px solid #444;
-            padding: 12px;
+            padding: 16px;
             border-radius: 0px;
-            font-size: 11px;
+            margin-top: 16px;
+            font-size: 13px;
             color: #8b8599;
+            line-height: 1.6;
         }
 
-        .recipe strong {
-            color: #00b050;
-            display: block;
-            margin-bottom: 6px;
+        .recipe-note strong {
+            color: #ff2a5f;
         }
 
         footer {
@@ -323,22 +319,22 @@
         <h2>What's Lifesteal?</h2>
         <div class="cards">
             <div class="card">
-                <div class="card-icon">⚔️</div>
+                <img class="card-icon" src="https://wiki.vg/images/thumb/3/3d/Wooden_Sword_JE4_BE2.png/32px-Wooden_Sword_JE4_BE2.png" alt="Sword">
                 <h3>Steal Hearts</h3>
                 <p>Kill someone in PvP? You steal one of their hearts permanently. Build your power!</p>
             </div>
             <div class="card">
-                <div class="card-icon">❤️</div>
+                <img class="card-icon" src="https://wiki.vg/images/thumb/3/37/Red_Heart_Container_JE_BE.png/32px-Red_Heart_Container_JE_BE.png" alt="Heart">
                 <h3>Lose Hearts</h3>
                 <p>Get eliminated when your hearts hit 0. Your team can revive you before next season.</p>
             </div>
             <div class="card">
-                <div class="card-icon">💥</div>
+                <img class="card-icon" src="https://wiki.vg/images/thumb/b/b6/TNT_JE4_BE2.png/32px-TNT_JE4_BE2.png" alt="TNT">
                 <h3>Full Chaos</h3>
                 <p>Raiding and griefing allowed. No safe zones. Only skill and strategy matter.</p>
             </div>
             <div class="card">
-                <div class="card-icon">💰</div>
+                <img class="card-icon" src="https://wiki.vg/images/thumb/e/e9/Emerald_JE4_BE3.png/32px-Emerald_JE4_BE3.png" alt="Emerald">
                 <h3>100% Free</h3>
                 <p>Zero pay-to-win. Everyone starts equal. Support us? Hit that Earn button!</p>
             </div>
@@ -355,33 +351,14 @@
             </div>
 
             <div class="section">
-                <h3>🔧 Custom Recipes</h3>
-                <div class="recipe-grid">
-                    <div class="recipe">
-                        <strong>Respawn Anchor</strong>
-                        Glowstone + Amethyst + Gold
-                    </div>
-                    <div class="recipe">
-                        <strong>Netherite Block</strong>
-                        9 Netherite Ingots
-                    </div>
-                    <div class="recipe">
-                        <strong>Dragon Egg</strong>
-                        Void Ore + 8 Endstone
-                    </div>
-                    <div class="recipe">
-                        <strong>Wither Star</strong>
-                        Soul Sand + Wither Bone
-                    </div>
+                <h3>⚔️ Custom Items</h3>
+                <p><strong>Mace:</strong> Heavy melee weapon for devastating hits</p>
+                <p><strong>Spears:</strong> Long-range projectile weapons for combat</p>
+                <p><strong>Wind Charges:</strong> Explosive utility items with knockback effects</p>
+                <p><strong>Hearts:</strong> Permanent heart items dropped from special loot</p>
+                <div class="recipe-note">
+                    <strong>Full recipes available in Discord!</strong> Join our server for crafting details and updates.
                 </div>
-            </div>
-
-            <div class="section">
-                <h3>✨ Custom Items</h3>
-                <p>⭐ <strong>Void Ore:</strong> Ultra-rare ore found in the void. Craft it for mega items.</p>
-                <p>⭐ <strong>Heart Shards:</strong> Drop from bosses. 8 shards = 1 permanent heart!</p>
-                <p>⭐ <strong>Wither Bone:</strong> Used in endgame recipes. Dropped by the Wither.</p>
-                <p>⭐ <strong>Soul Sand Dust:</strong> Craft potions and enchantments with it.</p>
             </div>
 
             <div class="section">
